@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TeamList from "./Component/TeamList";
+import Forms from "./Component/Forms"
 import {Route} from "react-router-dom"
 import './App.css';
 
