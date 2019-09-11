@@ -1,42 +1,71 @@
 import React, { useState } from 'react';
 
-function Form() {
-  const [team, setTeam] = useState({
-    name: '',
-    email: '',
-    role: '',
-    location: '',
-  })
+function Form(props) {
+  const initialTeam = { name:"", email:"", role:"", location:"" }
+  const [newTeam, setNewTeam] = useState({initialTeam})
 
   const handleChange = event => {
-    setTeam({
-      ...team,
+    setNewTeam({
+      ...newTeam,
       [event.target.name]: event.target.value
     });
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(event);
-  } 
+    if (!newTeam.name || !newTeam.email || !newTeam.role || !newTeam.location) {
+      alert("please fill in the blanks.")
+    } else {
+      props.setTeam([newTeam, ...props.Form]);
+      resetForm();
+    }    
+  };
+   const resetForm = () => {
+     setNewTeam(initialTeam)
+   } ;
 
   return (
-    <div className="team-form">
-      <form onSubmit={event => handleSubmit(event)}>
+    <div >
+      <form onSubmit={handleSubmit}>
         <h1>Fill Out The Form</h1>
         <label>
-          <input type="text" name="name" value={team.name} placeholder="Name..." onChange={event => handleChange(event)} />
+          <input 
+            type="text" 
+            name="name" 
+            value={newTeam.name}
+            placeholder="Name..." 
+            onChange={event => handleChange(event)} 
+          />
         </label>
         <label>
-          <input type="text" name="email" value={team.email} placeholder="Email..." onChange={event => handleChange(event)} />
+          <input 
+            type="text" 
+            name="email" 
+            value={newTeam.email} 
+            placeholder="Email..." 
+            onChange={event => handleChange(event)} 
+          />
         </label>
         <label>
-          <input type="text" name="role" value={team.role} placeholder="Role..." onChange={event => handleChange(event)} />
+          <input 
+          type="text" 
+          name="role" 
+          value={newTeam.role} 
+          placeholder="Role..." 
+          onChange={event => handleChange(event)} 
+        />
         </label>
         <label>
-          <input type="text" name="location" placeholder="Location..." value={team.location} onChange={event => handleChange(event)} />
+          <input 
+          type="text" 
+          name="location" 
+          placeholder="Location..." 
+          value={newTeam.location} 
+          onChange={event => handleChange(event)} 
+        />
         </label>
-        <button className="formButton">Submit</button>
+        <button type="submit">Submit</button>
+        <button type="button" onClick={resetForm}>Reset</button>
     </form>
     </div>
   )
