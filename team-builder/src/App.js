@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import TeamList from "./Component/TeamList";
-import Forms from "./Component/Forms"
+import Form from "./Component/Form";
+import { Data } from "./data";
 import {Route} from "react-router-dom"
 import './App.css';
 
 function App() {
-  const [teamList, setTeamList] = useState()
+  const [teamList, setTeamList] = useState([Data])
   
   useEffect(() => {
-    setTeamList()
+    setTeamList(Data)
   },[])
   return (
     <div className="App">
      <Route exact path='/' render={props => <TeamList {...props} teamList={teamList} /> } />
+     <Route path='/Form' render={props => <Form {...props} teamList={teamList} /> } />
     </div>
   );
 }

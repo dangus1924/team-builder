@@ -1,4 +1,4 @@
-export const data = [
+export const Data = [
     {
         name: 'Darren Angus',
         email: 'dangus1924@gmail.com',
@@ -12,6 +12,7 @@ export const data = [
         role: 'Full-stack student',
         location: ' Neptune City, NJ'
     },
+    
     {
         name: 'Dale fray',
         email: 'dfray1924@gmail.com',
